@@ -3,25 +3,25 @@
 <html>
 <head>
     <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Raleway:400,200">
+    <script src="js/vendor/helpers/modernizr.js"></script>
     <style>
-        body        { padding-top:80px; }
+        body {
+            padding-top:80px;
+            background-color: #fff;
+            }
     </style>
 </head>
 <body>
-<div class="container">
 
+<!--
 <div class="col-sm-6 col-sm-offset-3">
 
     <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
-    <!-- LOGIN FORM -->
     <form action="/signup" method="post">
         <div class="form-group">
             <label>Email</label>
@@ -35,13 +35,56 @@
         <button type="submit" class="btn btn-warning btn-lg">Signup</button>
     </form>
 
-    <hr>
 
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
 
+</div> -->
+
+
+<!-- New form -->
+<div class="container">
+<div class="cd-form">
+<div class="col-md-12">
+        <!-- <h2>Signup</h2> -->
+        <!-- <hr> -->
+        <div class="col-md-4">
+            <img src="img/rolltime_logo.svg">
+        </div>
+        <div class="col-md-8">
+        <form class="cd-form floating-labels" action="/signup" method="post" novalidate>
+            <fieldset>
+                <% if (message.length > 0) { %>
+                    <div class="error-message"><%= message %></div>
+                <% } %>
+<!--                 <div class="icon">
+                    <label class="cd-label" for="cd-name">Name</label>
+                    <input class="user" type="text" name="name" id="cd-name" required>
+                </div> -->
+                <div class="icon">
+                    <label class="cd-label" for="cd-email">Password</label>
+                    <input class="email" type="email" name="email" id="cd-email" required>
+                </div>
+                <div class="icon">
+                    <label class="cd-label" for="cd-password">Password</label>
+                    <input class="password" type="password" name="password" id="cd-password">
+                </div>
+
+                <div>
+                    <input type="submit" value="Signup">
+                </div>
+            </fieldset>
+        </form>
+        </div>
+</div>
+</div>
+        <div class="cd-form signup-footer">
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+            <hr>
+        </div>
 </div>
 
-</div>
 </body>
+
+<script src="js/vendor/jquery/jquery-2.1.1.js"></script>
+<script src="js/formvalidation.js"></script>
 </html>
