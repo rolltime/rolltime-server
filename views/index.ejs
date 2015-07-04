@@ -1,30 +1,86 @@
-<!-- views/index.ejs -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <script type="text/javascript" src="js/vendor/helpers/pace.min.js"></script>
+    <script type="text/javascript" src="js/vendor/d3/d3.min.js"></script>
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Raleway:400,200">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/vendor/jquery/jquery.vide.js"></script>
     <style>
-        body        { padding-top:80px; }
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
     </style>
+    <title>Rolltime</title>
 </head>
-<body>
-<div class="container">
+<style>
+</style>
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+<body data-hijacking="off" data-animation="parallax">
 
-        <p>Login or Register with:</p>
+    <section class="cd-section visible" data-vide-bg="video/bg">
+        <!-- <div class="top-bar"></div> -->
+        <div class="col-xs-1 left-col-spacing"></div>
+        <div class="col-xs-10">
+            <div class="title-container">
+                <h1 class="title">ROLL TIME</h1>
+            </div>
+        </div>
+    </section>
 
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-        <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-        <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-        <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+    <section class="cd-section">
+      <div class="container" style="heigth:100%;">
+        <div class="cd-form">
+            <div class="col-md-12">
+                    <div class="col-md-4">
+                        <img src="img/rolltime_logo.svg">
+                    </div>
+                    <div class="col-md-8">
+                    <form class="cd-form floating-labels" action="/signup" method="post" novalidate>
+                        <fieldset>
+                            <div class="icon">
+                                <label class="cd-label" for="cd-email">Email</label>
+                                <input class="email" type="email" name="email" id="cd-email" required>
+                            </div>
+                            <div class="icon">
+                                <label class="cd-label" for="cd-password">Password</label>
+                                <input class="password" type="password" name="password" id="cd-password">
+                            </div>
 
+                            <div>
+                                <input type="submit" value="Signup">
+                            </div>
+                        </fieldset>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="cd-form signup-footer">
+                <p>Already have an account? <a href="/login">Login</a></p>
+                <p>Or go <a href="/">home</a>.</p>
+                <hr>
+            </div>
     </div>
+    </section>
 
-</div>
+    <nav>
+        <ul class="cd-vertical-nav">
+            <li><a href="#0" class="cd-prev inactive">Next</a></li>
+            <li><a href="#0" class="cd-next">Prev</a></li>
+        </ul>
+    </nav>
+<script src="js/vendor/velocity/velocity.min.js"></script>
+<script src="js/vendor/velocity/velocity.ui.min.js"></script>
+<script src="js/parallax.js"></script>
 </body>
+
 </html>
