@@ -25,31 +25,35 @@ module.exports = function(app, passport) {
 // =============================================================================
 
     // locally --------------------------------
-        // LOGIN ===============================
-        // show the login form
-        app.get('/login', isLoggedOut, function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
-        });
+    // LOGIN ===============================
+    // show the login form
+    app.get('/login', isLoggedOut, function(req, res) {
+        res.render('login.ejs', { message: req.flash('loginMessage') });
+    });
 
-        // process the login form
-        app.post('/login', isLoggedOut, passport.authenticate('local-login', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-        }));
+    app.get('/station', isLoggedIn, function(req, res) {
+       res.render('station.ejs');
+    });
 
-        // SIGNUP =================================
-        // show the signup form
-        app.get('/signup', isLoggedOut, function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
-        });
+    // process the login form
+    app.post('/login', isLoggedOut, passport.authenticate('local-login', {
+        successRedirect : '/station', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
-        // process the signup form
-        app.post('/signup', isLoggedOut, passport.authenticate('local-signup', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/signup', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-        }));
+    // SIGNUP =================================
+    // show the signup form
+    app.get('/signup', isLoggedOut, function(req, res) {
+        res.render('signup.ejs', { message: req.flash('signupMessage') });
+    });
+
+    // process the signup form
+    app.post('/signup', isLoggedOut, passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
     // facebook -------------------------------
 
@@ -155,6 +159,7 @@ module.exports = function(app, passport) {
     // local -----------------------------------
     app.get('/unlink/local', isLoggedIn, function(req, res) {
         var user            = req.user;
+        user.local.name     = undefined;
         user.local.email    = undefined;
         user.local.password = undefined;
         user.save(function(err) {
@@ -197,7 +202,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/login');
 }
 
 // route middleware to ensure user is logged out
