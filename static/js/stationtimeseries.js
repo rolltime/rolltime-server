@@ -10,9 +10,9 @@ function CreateSparkLike(station_id) {
     //
     // Two parameters to fetch data: station id and date.
     //
-    // var today = moment().subtract(3, 'days').format('YYYY-MM-DD')
-    var today = moment().subtract(5, 'days').format('YYYY-MM-DD')
-    var api_query = 'api/processeds?id=' + station_id + '&day=' + today
+    var base_url = 'http://localhost:2368/'
+    var today = moment().subtract(11, 'days').format('YYYY-MM-DD')
+    var api_query = base_url + 'api/metrics?id=' + station_id + '&day=' + today
 
     //
     // Fetch data from the processed data endpoint.
@@ -33,7 +33,7 @@ function CreateSparkLike(station_id) {
         // Adding annotations.
         //
         var markers = [{
-            'executionTime': moment().subtract(5, 'days'),
+            'executionTime': moment().subtract(11, 'days'),
             'label': 'Now'
         }];
 
@@ -58,8 +58,8 @@ function CreateSparkLike(station_id) {
             max_y: 1,
             min_y: 0,
             markers: markers,
-            min_x: moment().subtract(5, 'days').hours(0).minutes(0),
-            max_x: moment().subtract(5, 'days').hours(23).minutes(59),
+            min_x: moment().subtract(11, 'days').hours(0).minutes(0),
+            max_x: moment().subtract(11, 'days').hours(23).minutes(59),
         })
 
         //

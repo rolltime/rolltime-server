@@ -13,7 +13,7 @@ var map = L.mapbox.map('map', 'luiscapelo.mij8ld21')
 var listings = document.getElementById('listings');
 var locations = L.mapbox.featureLayer().addTo(map);
 
-d3.json('static/data/station_metadata.geojson', function(err, geojson) {
+d3.json('data/station_metadata.geojson', function(err, geojson) {
 
     locations.setGeoJSON(geojson);
 
@@ -48,7 +48,7 @@ d3.json('static/data/station_metadata.geojson', function(err, geojson) {
 
         var watch = listing.appendChild(document.createElement('div'))
         watch.className = 'col-xs-4 vertical-center'
-        watch.innerHTML = '<a class="roundButton btn btn-primary btn-sm" href="#" role="button">Watch <span class="fa fa-eye-slash"></span></a>'
+        watch.innerHTML = '<a class="roundButton btn btn-primary btn-sm" href="#" role="button">Watch <span class="fa fa-eye"></span></a>'
 
         link.innerHTML = prop.stAddress1;
         if (prop.id) {
@@ -83,7 +83,7 @@ d3.json('static/data/station_metadata.geojson', function(err, geojson) {
         locale.bindPopup(popup);
 
         locale.setIcon(L.icon({
-            iconUrl: 'static/img/citibike-24.png',
+            iconUrl: 'img/citibike-24.png',
             iconSize: [56, 56],
             iconAnchor: [28, 28],
             popupAnchor: [0, -34]
