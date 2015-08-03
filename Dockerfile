@@ -8,8 +8,9 @@ FROM mongo:latest
 
 MAINTAINER Luis Capelo <luiscape@gmail.com>
 
-# Update all repositories
+# Update all repositories + install Git.
 RUN apt-get update
+RUN apt-get install git
 
 # Clone app
 RUN git clone https://github.com/rolltime/rolltime-server
