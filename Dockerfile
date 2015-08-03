@@ -14,8 +14,11 @@ RUN apt-get update
 # Clone app
 RUN git clone https://github.com/rolltime/rolltime-server
 
-# Install Nodemon and other dependencies.
+# Install Nodemon.
 RUN npm install -g nodemon
+
+# Install app dependencies.
+RUN cd rolltime-server
 RUN npm install
 
 # Start server.
