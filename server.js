@@ -2,9 +2,14 @@
 
 // set up ======================================================================
 // get all the tools we need
+
+console.log('==================================\n')
+console.log(process.env.FACEBOOK_CLIENT_ID)
+console.log('==================================\n')
+
 var express  = require('express');
 var app      = express();
-var port     = process.env.PORT || 7000;
+var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
