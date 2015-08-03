@@ -3,22 +3,21 @@
 # Based on Node and MongoDB
 ############################################################
 
-FROM node:latest
-FROM mongo:latest
+FROM ubuntu:trusty
 
 MAINTAINER Luis Capelo <luiscape@gmail.com>
 
-# Update all repositories + install Git.
-RUN apt-get update
-RUN apt-get install git
+RUN \
+  apt-get update && \
+  apt-get install -y git && \
+  apt-get install -y nodejs && \
+  apt-get install -y npm && \
+  apt-get install -y nodejs-legacy && \
+  npm install -g nodemon
 
-# Clone app
+
+# Clone app and install dependencies.
 RUN git clone https://github.com/rolltime/rolltime-server
-
-# Install Nodemon.
-RUN npm install -g nodemon
-
-# Install app dependencies.
 RUN cd rolltime-server
 RUN npm install
 
