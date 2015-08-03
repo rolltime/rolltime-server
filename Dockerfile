@@ -19,7 +19,7 @@ RUN \
 # Clone app and install dependencies.
 RUN git clone https://github.com/rolltime/rolltime-server
 RUN cd rolltime-server
-RUN npm install
+RUN sudo npm install
 
 # Start server.
 RUN nodemon server.js
