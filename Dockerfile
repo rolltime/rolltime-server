@@ -1,30 +1,18 @@
 ############################################################
 # Dockerfile to build the Rolltime Server application
-# Based on Node and MongoDB
+# Based on Node. Links to a MongoDB container.
 ############################################################
 
-FROM ubuntu:trusty
+FROM node:0.12.7
 
 MAINTAINER Luis Capelo <luiscape@gmail.com>
 
-RUN \
-  apt-get update && \
-  apt-get install -y git && \
-  apt-get install -y nodejs && \
-  apt-get install -y npm && \
-  apt-get install -y nodejs-legacy && \
-  npm install -g nodemon
-
-
 # Clone app and install dependencies.
 RUN \
+  npm install -g nodemon && \
   git clone https://github.com/rolltime/rolltime-server && \
   cd rolltime-server && \
-  sudo npm install
-
-# Start server.
-RUN \
-  cd rolltime-server && \
-  nodemon server.js
+  npm install
 
 EXPOSE 6000
+# CMD ["nodemon", "/rolltime-server/server.js"]
