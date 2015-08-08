@@ -14,5 +14,5 @@ RUN \
   cd rolltime-server && \
   npm install
 
-EXPOSE 6000
-CMD ["pm2", "start", "'/rolltime-server/server.js"]
+EXPOSE 8080
+CMD ["pm2", "start", "'/rolltime-server/server.js", "--no-daemon"]
