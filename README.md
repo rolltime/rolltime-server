@@ -1,7 +1,4 @@
 ## Rolltime Server
+Application that managers all the micro-services that are part of the Rolltime application. It has a wrapper API that connects to the all the micro-services' APIs.
 
-
-On the MongoDB shell (`mongo`), create an user using:
-```
-db.createUser({user: "rolltimedev", pwd: "PASSWORD_HERE", roles: [{ role: "readWrite", db: "rolltime" },]})
-```
+**This is a concept repository and is work-in-progress.**
