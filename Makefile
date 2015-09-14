@@ -1,3 +1,8 @@
 setup:
-	bash bin/install_mongo.sh;
-	bash bin/install_node.sh;
+  bash bin/setup.sh;
+
+tests:
+	bash bin/test.sh;
+
+run:
+	bash bin/run.sh;
