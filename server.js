@@ -37,7 +37,11 @@ mongoose.connection.on('connected', function (ref) {
   // a password.
   //
   require('./config/passport')(passport) // pass passport for configuration
-  app.use(session({ secret: process.env.SESSION_KEY || 'rolltimekey' }))
+  app.use(session({
+    secret: process.env.SESSION_KEY || 'rolltimekey',
+    saveUninitialized: false,
+    resave: true
+  }))
   app.use(passport.initialize())
   app.use(passport.session())
 
