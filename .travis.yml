@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "0.12"
+  - "4.0"
+
+install:
+ - make setup
+ - npm install istanbul
+ - npm install -g standard
+ - npm install -g snazzy
+ - export COVERALLS_SERVICE_NAME=travis-ci
+
+script:
+  - make tests
+  # - make standard  # checks JS standard
+
+after_success:
+  - make coveralls
+
+notifications:
+    email: false
