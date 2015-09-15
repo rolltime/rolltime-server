@@ -56,7 +56,7 @@ mongoose.connection.on('connected', function (ref) {
   // Start server.
   //
   app.listen(port)
-  console.log('Scraper Status API running on port ' + port)
+  console.log('Rolltime Server running on port ' + port)
 
 })
 
