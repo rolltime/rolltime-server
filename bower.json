@@ -1,0 +1,16 @@
+{
+  "name": "rolltime-server",
+  "version": "v.0.1.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-bootstrap": "latest",
+    "angular-markdown-directive": "latest",
+    "angular-moment": "latest",
+    "angular-route": "latest",
+    "animate.css": "latest",
+    "c3": "latest",
+    "d3": "latest",
+    "font-awesome": "latest",
+    "ngprogress": "latest"
+  }
+}
