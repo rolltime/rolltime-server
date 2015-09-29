@@ -260,7 +260,6 @@ module.exports = function (app, passport) {
     // Getting a query service base url
     // but also pass extra parameters.
     //
-    // var query_service = services[service].host
     var pass_request = req.originalUrl.replace('/api/' + service, '')
     var keepAliveAgent = new http.Agent({ keepAlive: true })
     var options = {
