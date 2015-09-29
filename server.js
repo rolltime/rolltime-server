@@ -68,4 +68,5 @@ mongoose.connection.on('error', function (err) {
 //
 // Attempt connection with MongoDB.
 //
+console.log('Attempting connection to: ' + DB.url)
 mongoose.connect(DB.url)

@@ -15,3 +15,11 @@ app.controller('WatchStationController', ['$http', '$window', function ($http, $
   }
 
 }])
+
+app.controller('FetchHistoricData', ['$http', function ($http) {
+  //
+  // Fetches the historic time
+  // series from the historic API.
+  //
+  self.fetch = function (station_id) {}
+}])
