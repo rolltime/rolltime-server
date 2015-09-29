@@ -4,21 +4,25 @@
   "license": "MIT",
   "repository": "https://github.com/rolltime/rolltime-server",
   "version": "0.1.0",
-  "dependencies" : {
-    "express" : "latest",
-    "ejs" : "latest",
-    "mongoose" : "latest",
-    "passport" : "latest",
-    "passport-local" : "latest",
-    "passport-facebook" : "latest",
-    "passport-twitter" : "latest",
-    "passport-google-oauth" : "latest",
-    "connect-flash" : "latest",
-    "bcrypt-nodejs" : "latest",
-    "morgan": "latest",
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
     "body-parser": "latest",
+    "chai": "^3.2.0",
+    "connect-flash": "latest",
     "cookie-parser": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-session": "latest",
     "method-override": "latest",
-    "express-session": "latest"
+    "mocha": "^2.3.2",
+    "moment": "^2.10.6",
+    "mongoose": "latest",
+    "morgan": "latest",
+    "passport": "latest",
+    "passport-facebook": "latest",
+    "passport-google-oauth": "latest",
+    "passport-local": "latest",
+    "passport-twitter": "latest",
+    "should": "^7.1.0"
   }
 }

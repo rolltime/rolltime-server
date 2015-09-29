@@ -1,4 +1,7 @@
 module.exports = function (app, passport) {
+  var moment = require('moment')
+  var StationObject = require('./models/station')
+
   app.get('/', function (req, res) {
     res.render('index.ejs')
   })
@@ -88,7 +91,6 @@ module.exports = function (app, passport) {
   // will provide that user with the ability to connect
   // his accounts.
   //
-
   app.get('/connect/local', isLoggedIn, function (req, res) {
     res.render('connect-local.ejs', { message: req.flash('loginMessage') })
   })
@@ -170,6 +172,56 @@ module.exports = function (app, passport) {
     })
   })
 
+  //
+  // REST endpoints for watching stations.
+  //
+  app.get('/watch', function (req, res) {})
+
+  app.post('/watch', function (req, res) {
+    console.log('Query: ' + req.body)
+    if (_check_id(req)['status']) {
+      //
+      // Creates new station object.
+      //
+      var station = new StationObject({
+        'type': req.body.type || null,
+        'priority': req.body.priority || null,
+        'station': {
+          'id': req.body.id,
+          'time': {
+            'start': req.body.start || moment().format(),
+            'end': req.body.end || null
+          }
+        }
+      })
+
+      //
+      // Saves station object in database.
+      //
+      station.save(function (err, data) {
+        if (err) {
+          console.log(err)
+          var payload = {
+            'success': false,
+            'message': 'Database error. Failed to store data.',
+          }
+          res.send(payload)
+        } else {
+          var payload = {
+            'success': true,
+            'message': 'Stored record in database successfully.',
+            'record': data,
+          }
+          res.send(payload)
+        }
+      })
+    } else {
+      res.send(_check_id(req))
+    }
+  })
+
+  app.delete('/watch', function (req, res) {})
+
 }
 
 //
@@ -181,6 +233,16 @@ function isLoggedIn (req, res, next) {
     return next()
 
   res.redirect('/login')
+}
+
+function _check_id (req) {
+  if (typeof req.body['id'] === undefined) {
+    var payload = {
+      'success': false,
+      'message': 'Parameters are missing. Please provide an station id.',
+    }
+    return payload
+  }
 }
 
 //
