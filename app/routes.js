@@ -1,9 +1,28 @@
+var http = require('http')
+var moment = require('moment')
+var querystring = require('querystring')
+
 module.exports = function (app, passport) {
-  var moment = require('moment')
   var StationObject = require('./models/station')
+
+  //
+  // Memory objects.
+  //
+  var station = {}
+  var service
 
   app.get('/', function (req, res) {
     res.render('index.ejs')
+  })
+
+  app.param('id', function (req, res, next, data) {
+    station.id = data
+    next()
+  })
+
+  app.param('service', function (req, res, next, data) {
+    service = data
+    next()
   })
 
   app.get('/profile', isLoggedIn, function (req, res) {
@@ -24,15 +43,15 @@ module.exports = function (app, passport) {
     res.render('login.ejs', { message: req.flash('loginMessage') })
   })
 
-  app.get('/station', isLoggedIn, function (req, res) {
-    res.render('station.ejs')
+  app.get('/map', isLoggedIn, function (req, res) {
+    res.render('map.ejs')
   })
 
   //
   // Process login form passsing data to passport.
   //
   app.post('/login', isLoggedOut, passport.authenticate('local-login', {
-    successRedirect: '/station',
+    successRedirect: '/map',
     failureRedirect: '/login',
     failureFlash: true
   }))
@@ -221,6 +240,75 @@ module.exports = function (app, passport) {
   })
 
   app.delete('/watch', function (req, res) {})
+
+  //
+  // Interacting with the historic API.
+  //
+  app.all('/api/:service*', function (req, res) {
+    //
+    // Services available.
+    //
+    console.log('This is my queried service: ' + service)
+    var services = {
+      'historic': {
+        'host': process.env.HISTORIC_PORT_2000_TCP_ADDR,
+        'port': process.env.HISTORIC_PORT_2000_TCP_PORT
+      }
+    }
+
+    //
+    // Getting a query service base url
+    // but also pass extra parameters.
+    //
+    // var query_service = services[service].host
+    var pass_request = req.originalUrl.replace('/api/' + service, '')
+    var keepAliveAgent = new http.Agent({ keepAlive: true })
+    var options = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      host: services[service].host,
+      port: services[service].port,
+      path: pass_request,
+      method: req.method,
+      agent: keepAliveAgent
+    }
+
+    //
+    // Make request to service using
+    // the options that came via the UI.
+    //
+    console.log(options)
+    var request = http.request(options, function (response) {
+      response.setEncoding('utf8')
+      var body = ''
+      response.on('data', function (chunk) {
+        body += chunk
+      })
+      response.on('close', function () {
+        res.send(body)
+      })
+      response.on('end', function () {
+        res.send(body)
+      })
+    })
+
+    //
+    // Inform the user if the
+    // service is not available.
+    //
+    request.on('error', function (error) {
+      var payload = {
+        'succes': false,
+        'message': 'Service not available.',
+        'service': service
+      }
+      res.send(payload)
+    })
+
+    // request.write(querystring.stringify(req.body))
+    request.end()
+  })
 
 }
 
